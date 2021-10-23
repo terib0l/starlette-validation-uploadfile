@@ -1,28 +1,5 @@
-# starlette-validation-uploadfile
-
-***--- Now, in progress. ---***
-
-Middleware for validation upload-file in FastAPI and Starlette.
-
-## Installation
-
-Still unable.
-
-```bash
-pip install starlette-validation-uploadfile
-```
-
-## What this package can do:
-
-- Put a limit on the size of the uploaded file
-- Restrict the types of files that can be uploaded
-
-## Usage example with FastAPI
-
-The following is almost identical to `test.py`.
-
-```Python
 from fastapi import FastAPI, Request, UploadFile, File 
+from fastapi.responses import RedirectResponse
 
 from starlette_validation_uploadfile import ValidateUploadFileMiddleware
 
@@ -35,6 +12,10 @@ app.add_middleware(
         file_type=["image/png", "image/jpeg"]
 )
 
+@app.get("/", response_class=RedirectResponse)
+def index(request: Request):
+    return request.url_for("index") + "docs"
+
 @app.post("/upload/")
 def upload_file(request: Request, file: UploadFile = File(...)):
     form = request.form()
@@ -45,10 +26,6 @@ def upload_file(request: Request, file: UploadFile = File(...)):
     return {
         "filename": file.filename,
         "content_type": content_type,
-        "file_size": size
+        "file_size": size,
+        "other": file.__dict__
     }
-```
-
-## License
-
-[MIT](https://github.com/terib0l/starlette-validation-uploadfile/blob/main/LICENSe)
