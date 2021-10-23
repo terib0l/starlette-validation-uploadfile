@@ -9,7 +9,7 @@ app.add_middleware(
         ValidateUploadFileMiddleware,
         app_path="/upload/",
         max_size=120000,
-        file_type=["image/png", "image/jpeg"]
+        file_type=["image/jpeg"]
 )
 
 @app.get("/", response_class=RedirectResponse)

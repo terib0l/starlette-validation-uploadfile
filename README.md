@@ -2,11 +2,12 @@
 
 ***--- Now, in progress. ---***
 
+[![PyPI](https://img.shields.io/badge/pypi-v0.1.0-orange)](https://pypi.org/project/starlette-validation-uploadfile/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/terib0l/starlette-validation-uploadfile/blob/main/LICENSE)
+
 Middleware for validation upload-file in FastAPI and Starlette.
 
 ## Installation
-
-Still unable.
 
 ```bash
 pip install starlette-validation-uploadfile
@@ -48,7 +49,3 @@ def upload_file(request: Request, file: UploadFile = File(...)):
         "file_size": size
     }
 ```
-
-## License
-
-[MIT](https://github.com/terib0l/starlette-validation-uploadfile/blob/main/LICENSe)
