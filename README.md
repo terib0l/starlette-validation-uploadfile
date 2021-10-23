@@ -2,8 +2,8 @@
 
 ***--- Now, in progress. ---***
 
-[![PyPI](https://img.shields.io/badge/pypi-v0.1.0-orange)](https://pypi.org/project/starlette-validation-uploadfile/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/terib0l/starlette-validation-uploadfile/blob/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/starlette-validation-uploadfile?color=orange)](https://pypi.org/project/starlette-validation-uploadfile/)
+[![License](https://img.shields.io/github/license/terib0l/starlette-validation-uploadfile)](https://github.com/terib0l/starlette-validation-uploadfile/blob/main/LICENSE)
 
 Middleware for validation upload-file in FastAPI and Starlette.
 
