@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.responses import RedirectResponse
 
 from starlette_validation_uploadfile import ValidateUploadFileMiddleware
+#from tmp.override_ver import ValidateUploadFileMiddleware
 
 app = FastAPI()
 
@@ -27,5 +28,4 @@ def upload_file(request: Request, file: UploadFile = File(...)):
         "filename": file.filename,
         "content_type": content_type,
         "file_size": size,
-        "other": file.__dict__
     }

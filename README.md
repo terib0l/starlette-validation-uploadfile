@@ -20,9 +20,10 @@ pip install starlette-validation-uploadfile
 
 ## Usage example with FastAPI
 
-The following is almost identical to `test.py`.
+The following is almost identical to `test.py`.  
+Note: requirements.txt is for test.
 
-```Python
+```python
 from fastapi import FastAPI, Request, UploadFile, File 
 
 from starlette_validation_uploadfile import ValidateUploadFileMiddleware

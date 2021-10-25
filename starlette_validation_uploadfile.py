@@ -24,11 +24,13 @@ class ValidateUploadFileMiddleware:
         self.file_type = file_type
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
-        if scope["type"] != "http" or scope["method"] != "POST":
-            return await self.app(scope, receive, send)
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
 
-        if not self.app_path.fullmatch(scope["path"]):
-            return await self.app(scope, receive, send)
+        if not self.app_path.fullmatch(scope["path"]) or scope["method"] != "POST":
+            await self.app(scope, receive, send)
+            return
 
         request = Request(scope=scope, receive=receive)
         if self.file_type:
@@ -42,4 +44,4 @@ class ValidateUploadFileMiddleware:
         if int(request.headers["content-length"]) > self.max_size:
             return await validation_error(status.HTTP_413_REQUEST_ENTITY_TOO_LARGE)(scope, receive, send)
 
-        return await self.app(scope, receive, send)
+        await self.app(scope, receive, send)

@@ -1,6 +1,6 @@
 from setuptools import setup
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 
 def get_long_description():
     with open("README.md", encoding="utf8") as f:
