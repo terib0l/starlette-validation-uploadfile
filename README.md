@@ -32,14 +32,17 @@ app = FastAPI()
 
 app.add_middleware(
         ValidateUploadFileMiddleware,
-        app_path="/upload/",
-        max_size=120000,
+        app_path=[
+            "/upload/first",
+            "/upload/second",
+        ],
+        max_size=16777216,
         file_type=["image/png", "image/jpeg"]
 )
 
-@app.post("/upload/")
-def upload_file(request: Request, file: UploadFile = File(...)):
-    form = request.form()
+@app.post("/upload/first")
+async def upload_file(request: Request, file: UploadFile = File(...)):
+    form = await request.form()
     content_type = form[next(iter(form))].content_type
 
     size = request.headers["content-length"]
@@ -47,6 +50,19 @@ def upload_file(request: Request, file: UploadFile = File(...)):
     return {
         "filename": file.filename,
         "content_type": content_type,
-        "file_size": size
+        "file_size": size,
+    }
+
+@app.post("/upload/second")
+async def upload_file_second(request: Request, file: UploadFile = File(...)):
+    form = await request.form()
+    content_type = form[next(iter(form))].content_type
+
+    size = request.headers["content-length"]
+
+    return {
+        "filename": file.filename,
+        "content_type": content_type,
+        "file_size": size,
     }
 ```
